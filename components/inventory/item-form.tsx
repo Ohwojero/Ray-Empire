@@ -26,7 +26,7 @@ interface ItemFormProps {
   onSubmit: (data: Partial<InventoryItem>) => Promise<void>
 }
 
-const categories = ["Electronics", "Accessories", "Cables", "Audio", "Mobile", "Computing", "Other"]
+const categories = ["Perfume", "Makeup", "Skincare", "Hair Care", "Other"]
 
 export function ItemForm({ item, open, onOpenChange, onSubmit }: ItemFormProps) {
   const [isLoading, setIsLoading] = useState(false)

@@ -1,8 +1,6 @@
-# Cart Persistence Fix Plan
+# Expand Inventory to Cosmetics Plan
 
 ## Tasks
-- [x] Add localStorage persistence for cart items in app/sales/page.tsx
-- [x] Load cart items from localStorage on component mount
-- [x] Save cart items to localStorage whenever cart changes
-- [x] Clear localStorage on successful checkout
-- [ ] Test cart persistence across page refreshes
+- [x] Update lib/mock-data.ts to replace current items with 20 cosmetic products including perfumes and other beauty items
+- [x] Ensure variety in categories like Perfume, Makeup, Skincare, Hair Care
+- [ ] Test the updated inventory in the sales page
