@@ -5,14 +5,18 @@ import { useRouter } from "next/navigation"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { ItemSearch } from "@/components/sales/item-search"
 import { Cart } from "@/components/sales/cart"
+import { InvoiceTemplate } from "@/components/invoice/invoice-template"
 import type { InventoryItem, SaleItem } from "@/lib/types"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { CheckCircle } from "lucide-react"
 
 export default function SalesPage() {
   const [cartItems, setCartItems] = useState<SaleItem[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [lastSaleId, setLastSaleId] = useState<string | null>(null)
+  const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false)
+  const [invoiceData, setInvoiceData] = useState<any>(null)
   const router = useRouter()
 
   const addToCart = (item: InventoryItem, quantity: number) => {
@@ -106,15 +110,27 @@ export default function SalesPage() {
     }
   }
 
-  const viewInvoice = () => {
+  const viewInvoice = async () => {
     if (lastSaleId) {
-      router.push(`/invoice/${lastSaleId}`)
+      try {
+        const response = await fetch(`/api/invoice/${lastSaleId}`)
+        if (response.ok) {
+          const data = await response.json()
+          setInvoiceData(data)
+          setIsInvoiceModalOpen(true)
+        } else {
+          alert("Failed to load invoice")
+        }
+      } catch (error) {
+        console.error("Failed to load invoice:", error)
+        alert("Failed to load invoice")
+      }
     }
   }
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="space-y-6 bg-gradient-to-br from-green-50 via-white to-emerald-50 p-6 rounded-lg shadow-lg">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Point of Sale</h1>
           <p className="text-muted-foreground">Search for items, add them to cart, and complete sales transactions.</p>
@@ -125,7 +141,7 @@ export default function SalesPage() {
             <CheckCircle className="h-4 w-4" />
             <AlertDescription className="flex items-center justify-between">
               <span>Sale completed successfully! Invoice #{lastSaleId}</span>
-              <button onClick={viewInvoice} className="text-primary hover:underline font-medium">
+              <button onClick={viewInvoice} className="text-primary hover:underline font-medium cursor-pointer">
                 View Invoice
               </button>
             </AlertDescription>
@@ -152,6 +168,15 @@ export default function SalesPage() {
           </div>
         </div>
       </div>
+
+      <Dialog open={isInvoiceModalOpen} onOpenChange={setIsInvoiceModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Invoice Details</DialogTitle>
+          </DialogHeader>
+          {invoiceData && <InvoiceTemplate invoice={invoiceData} />}
+        </DialogContent>
+      </Dialog>
     </DashboardLayout>
   )
 }

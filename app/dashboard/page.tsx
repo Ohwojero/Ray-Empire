@@ -27,7 +27,7 @@ const lowStockItems = [
 export default function DashboardPage() {
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="space-y-6 bg-gradient-to-br from-indigo-50 via-white to-blue-50 p-6 rounded-lg shadow-lg">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">Welcome back! Here's what's happening with your inventory today.</p>
@@ -35,7 +35,7 @@ export default function DashboardPage() {
 
         {/* Stats Cards */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white border-0">
+          <Card className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white border-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Stock</CardTitle>
               <Package className="h-4 w-4" />
@@ -46,7 +46,7 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white border-0">
+          <Card className="bg-gradient-to-br from-green-600 to-green-700 text-white border-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Sales Today</CardTitle>
               <ShoppingCart className="h-4 w-4" />
@@ -57,7 +57,7 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0">
+          <Card className="bg-gradient-to-br from-purple-600 to-purple-700 text-white border-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Revenue</CardTitle>
               <TrendingUp className="h-4 w-4" />
@@ -68,7 +68,7 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white border-0">
+          <Card className="bg-gradient-to-br from-red-600 to-red-700 text-white border-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Low Stock Alerts</CardTitle>
               <AlertTriangle className="h-4 w-4" />

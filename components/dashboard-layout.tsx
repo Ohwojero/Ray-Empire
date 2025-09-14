@@ -53,9 +53,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   }
 
   const Sidebar = ({ className }: { className?: string }) => (
-    <div className={cn("flex h-full flex-col bg-gray-50 dark:bg-gray-900", className)}>
-      <div className="flex h-16 items-center border-b px-6">
-        <h1 className="text-xl font-bold text-primary">RAY EMPIRE</h1>
+    <div className={cn("flex h-full flex-col bg-gradient-to-b from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-900", className)}>
+      <div className="flex h-16 items-center border-b px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <h1 className="text-xl font-bold">RAY EMPIRE</h1>
       </div>
       <nav className="flex-1 space-y-1 px-4 py-4">
         {navigation.map((item) => {
