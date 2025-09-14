@@ -18,7 +18,7 @@ interface ReportChartProps {
 export function ReportChart({ data, title, description, type, dataKey }: ReportChartProps) {
   const formatValue = (value: number) => {
     if (dataKey === "revenue") {
-      return `$${value.toLocaleString()}`
+      return `₦${value.toLocaleString()}`
     }
     return value.toString()
   }

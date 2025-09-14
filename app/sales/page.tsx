@@ -93,8 +93,8 @@ export default function SalesPage() {
         setLastSaleId(sale.id)
         setCartItems([])
 
-        // Auto-hide success message after 5 seconds
-        setTimeout(() => setLastSaleId(null), 5000)
+        // Auto-hide success message after 4 minutes
+        setTimeout(() => setLastSaleId(null), 4 * 60 * 1000)
       } else {
         alert("Failed to process sale")
       }

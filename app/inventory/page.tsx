@@ -108,9 +108,12 @@ export default function InventoryPage() {
 
       if (response.ok) {
         await fetchItems()
+      } else {
+        alert("Failed to delete item. Please try again.")
       }
     } catch (error) {
       console.error("Failed to delete item:", error)
+      alert("Failed to delete item. Please try again.")
     }
   }
 

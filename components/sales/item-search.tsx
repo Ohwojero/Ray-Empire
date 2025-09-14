@@ -87,7 +87,7 @@ export function ItemSearch({ onAddToCart }: ItemSearchProps) {
                     </div>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
                     <div className="flex items-center gap-4 mt-2">
-                      <span className="font-medium">${item.price.toFixed(2)}</span>
+                      <span className="font-medium">₦{item.price.toFixed(2)}</span>
                       <span className="text-sm text-muted-foreground">{item.stock} in stock</span>
                     </div>
                   </div>

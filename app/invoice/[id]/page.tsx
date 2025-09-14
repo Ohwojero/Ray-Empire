@@ -93,7 +93,7 @@ export default function InvoicePage() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="space-y-6 bg-gradient-to-r from-blue-50 via-white to-blue-50 p-6 rounded-lg shadow-lg">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Invoice {invoice.invoiceNumber}</h1>
           <p className="text-muted-foreground">View and print invoice details</p>

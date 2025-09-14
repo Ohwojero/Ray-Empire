@@ -57,7 +57,7 @@ export function InvoiceTemplate({ invoice, showActions = true }: InvoiceTemplate
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-gradient-to-r from-blue-50 via-white to-blue-50 p-6 rounded-lg shadow-lg">
       {showActions && (
         <div className="flex gap-2 print:hidden">
           <Button onClick={handlePrint} variant="outline">
@@ -135,8 +135,8 @@ export function InvoiceTemplate({ invoice, showActions = true }: InvoiceTemplate
                     <tr key={item.id} className={index % 2 === 0 ? "bg-background" : "bg-muted/20"}>
                       <td className="p-3">{item.name}</td>
                       <td className="p-3 text-right">{item.quantity}</td>
-                      <td className="p-3 text-right">${item.price.toFixed(2)}</td>
-                      <td className="p-3 text-right font-medium">${item.total.toFixed(2)}</td>
+                      <td className="p-3 text-right">₦{item.price.toFixed(2)}</td>
+                      <td className="p-3 text-right font-medium">₦{item.total.toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -150,16 +150,16 @@ export function InvoiceTemplate({ invoice, showActions = true }: InvoiceTemplate
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
-                  <span>${invoice.subtotal.toFixed(2)}</span>
+                  <span>₦{invoice.subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Tax (8%):</span>
-                  <span>${invoice.tax.toFixed(2)}</span>
+                  <span>₦{invoice.tax.toFixed(2)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total:</span>
-                  <span>${invoice.total.toFixed(2)}</span>
+                  <span>₦{invoice.total.toFixed(2)}</span>
                 </div>
               </div>
             </div>

@@ -57,7 +57,7 @@ export function Cart({ items, onUpdateQuantity, onRemoveItem, onCheckout, isProc
             <div key={item.id} className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex-1">
                 <h4 className="font-medium">{item.name}</h4>
-                <p className="text-sm text-muted-foreground">${item.price.toFixed(2)} each</p>
+                <p className="text-sm text-muted-foreground">₦{item.price.toFixed(2)} each</p>
               </div>
               <div className="flex items-center gap-2">
                 <Button
@@ -87,7 +87,7 @@ export function Cart({ items, onUpdateQuantity, onRemoveItem, onCheckout, isProc
                   <Trash2 className="h-3 w-3" />
                 </Button>
               </div>
-              <div className="w-20 text-right font-medium">${item.total.toFixed(2)}</div>
+              <div className="w-20 text-right font-medium">₦{item.total.toFixed(2)}</div>
             </div>
           ))}
         </div>
@@ -97,16 +97,16 @@ export function Cart({ items, onUpdateQuantity, onRemoveItem, onCheckout, isProc
         <div className="space-y-2">
           <div className="flex justify-between">
             <span>Subtotal:</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>₦{subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
             <span>Tax (8%):</span>
-            <span>${tax.toFixed(2)}</span>
+            <span>₦{tax.toFixed(2)}</span>
           </div>
           <Separator />
           <div className="flex justify-between font-bold text-lg">
             <span>Total:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>₦{total.toFixed(2)}</span>
           </div>
         </div>
 
@@ -128,7 +128,7 @@ export function Cart({ items, onUpdateQuantity, onRemoveItem, onCheckout, isProc
           </div>
 
           <Button type="submit" className="w-full" size="lg" disabled={isProcessing}>
-            {isProcessing ? "Processing..." : `Complete Sale - $${total.toFixed(2)}`}
+            {isProcessing ? "Processing..." : `Complete Sale - ₦${total.toFixed(2)}`}
           </Button>
         </form>
       </CardContent>

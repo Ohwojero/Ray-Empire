@@ -113,7 +113,7 @@ export default function ReportsPage() {
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">${reportData.summary.totalRevenue.toLocaleString()}</div>
+                  <div className="text-2xl font-bold">₦{reportData.summary.totalRevenue.toLocaleString()}</div>
                   <p className="text-xs text-muted-foreground">{getPeriodLabel()}</p>
                 </CardContent>
               </Card>
@@ -124,7 +124,7 @@ export default function ReportsPage() {
                   <TrendingUp className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">${reportData.summary.averageOrderValue.toFixed(2)}</div>
+                  <div className="text-2xl font-bold">₦{reportData.summary.averageOrderValue.toFixed(2)}</div>
                   <p className="text-xs text-muted-foreground">Per transaction</p>
                 </CardContent>
               </Card>
@@ -202,8 +202,8 @@ export default function ReportsPage() {
                                 <tr key={index} className="border-b">
                                   <td className="p-4">{row.period}</td>
                                   <td className="p-4">{row.sales}</td>
-                                  <td className="p-4">${row.revenue.toLocaleString()}</td>
-                                  <td className="p-4">${row.sales > 0 ? (row.revenue / row.sales).toFixed(2) : "0.00"}</td>
+                                  <td className="p-4">₦{row.revenue.toLocaleString()}</td>
+                                  <td className="p-4">₦{row.sales > 0 ? (row.revenue / row.sales).toFixed(2) : "0.00"}</td>
                                 </tr>
                               ))}
                           </tbody>
