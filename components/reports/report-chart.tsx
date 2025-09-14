@@ -35,7 +35,14 @@ export function ReportChart({ data, title, description, type, dataKey }: ReportC
         })
       }
     } catch {
-      // If it's not a date, return as is
+      // If it's not a date, check if it's year-month
+      if (period.includes("-")) {
+        const [year, month] = period.split("-")
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        return `${monthNames[parseInt(month) - 1]} ${year}`
+      }
+      // If it's just a year
+      return period
     }
     return period
   }

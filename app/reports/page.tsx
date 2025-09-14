@@ -135,6 +135,7 @@ export default function ReportsPage() {
               <TabsList>
                 <TabsTrigger value="sales">Sales Volume</TabsTrigger>
                 <TabsTrigger value="revenue">Revenue</TabsTrigger>
+                <TabsTrigger value="details">Details</TabsTrigger>
               </TabsList>
 
               <TabsContent value="sales" className="space-y-4">
@@ -174,44 +175,45 @@ export default function ReportsPage() {
                   />
                 </div>
               </TabsContent>
-            </Tabs>
 
-            {/* Recent Performance Table */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Performance Breakdown</CardTitle>
-                <CardDescription>Detailed {selectedPeriod} performance data</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="rounded-md border">
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="border-b bg-muted/50">
-                          <th className="h-12 px-4 text-left align-middle font-medium">Period</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium">Sales</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium">Revenue</th>
-                          <th className="h-12 px-4 text-left align-middle font-medium">Avg Order</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {reportData.chartData
-                          .slice(-10)
-                          .reverse()
-                          .map((row, index) => (
-                            <tr key={index} className="border-b">
-                              <td className="p-4">{row.period}</td>
-                              <td className="p-4">{row.sales}</td>
-                              <td className="p-4">${row.revenue.toLocaleString()}</td>
-                              <td className="p-4">${row.sales > 0 ? (row.revenue / row.sales).toFixed(2) : "0.00"}</td>
+              <TabsContent value="details" className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Performance Breakdown</CardTitle>
+                    <CardDescription>Detailed {selectedPeriod} performance data</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="rounded-md border">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead>
+                            <tr className="border-b bg-muted/50">
+                              <th className="h-12 px-4 text-left align-middle font-medium">Period</th>
+                              <th className="h-12 px-4 text-left align-middle font-medium">Sales</th>
+                              <th className="h-12 px-4 text-left align-middle font-medium">Revenue</th>
+                              <th className="h-12 px-4 text-left align-middle font-medium">Avg Order</th>
                             </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                          </thead>
+                          <tbody>
+                            {reportData.chartData
+                              .slice(-10)
+                              .reverse()
+                              .map((row, index) => (
+                                <tr key={index} className="border-b">
+                                  <td className="p-4">{row.period}</td>
+                                  <td className="p-4">{row.sales}</td>
+                                  <td className="p-4">${row.revenue.toLocaleString()}</td>
+                                  <td className="p-4">${row.sales > 0 ? (row.revenue / row.sales).toFixed(2) : "0.00"}</td>
+                                </tr>
+                              ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
           </>
         )}
       </div>

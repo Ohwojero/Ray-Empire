@@ -14,6 +14,7 @@ interface ItemSearchProps {
 
 export function ItemSearch({ onAddToCart }: ItemSearchProps) {
   const [searchTerm, setSearchTerm] = useState("")
+  const [appliedSearch, setAppliedSearch] = useState("")
   const [items, setItems] = useState<InventoryItem[]>([])
   const [filteredItems, setFilteredItems] = useState<InventoryItem[]>([])
   const [quantities, setQuantities] = useState<Record<string, number>>({})
@@ -23,18 +24,22 @@ export function ItemSearch({ onAddToCart }: ItemSearchProps) {
   }, [])
 
   useEffect(() => {
-    if (searchTerm.trim()) {
+    if (appliedSearch.trim()) {
       const filtered = items.filter(
         (item) =>
-          item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.sku.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.description.toLowerCase().includes(searchTerm.toLowerCase()),
+          item.name.toLowerCase().includes(appliedSearch.toLowerCase()) ||
+          item.sku.toLowerCase().includes(appliedSearch.toLowerCase()) ||
+          item.description.toLowerCase().includes(appliedSearch.toLowerCase()),
       )
       setFilteredItems(filtered.slice(0, 10)) // Limit to 10 results
     } else {
-      setFilteredItems([])
+      setFilteredItems(items.slice(0, 10)) // Show first 10 items when no search
     }
-  }, [searchTerm, items])
+  }, [appliedSearch, items])
+
+  const handleApplySearch = () => {
+    setAppliedSearch(searchTerm)
+  }
 
   const fetchItems = async () => {
     try {
@@ -72,6 +77,10 @@ export function ItemSearch({ onAddToCart }: ItemSearchProps) {
           className="pl-10"
         />
       </div>
+
+      <Button onClick={handleApplySearch} className="w-full">
+        Apply Search
+      </Button>
 
       {filteredItems.length > 0 && (
         <div className="space-y-2 max-h-96 overflow-y-auto">
