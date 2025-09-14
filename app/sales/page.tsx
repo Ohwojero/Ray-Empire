@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { ItemSearch } from "@/components/sales/item-search"
@@ -18,6 +18,24 @@ export default function SalesPage() {
   const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false)
   const [invoiceData, setInvoiceData] = useState<any>(null)
   const router = useRouter()
+
+  // Load cart items from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cartItems")
+    if (savedCart) {
+      try {
+        const parsedCart = JSON.parse(savedCart)
+        setCartItems(parsedCart)
+      } catch (error) {
+        console.error("Failed to parse saved cart:", error)
+      }
+    }
+  }, [])
+
+  // Save cart items to localStorage whenever cart changes
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems))
+  }, [cartItems])
 
   const addToCart = (item: InventoryItem, quantity: number) => {
     const existingItem = cartItems.find((cartItem) => cartItem.itemId === item.id)
@@ -96,6 +114,7 @@ export default function SalesPage() {
         const sale = await response.json()
         setLastSaleId(sale.id)
         setCartItems([])
+        localStorage.removeItem("cartItems")
 
         // Auto-hide success message after 4 minutes
         setTimeout(() => setLastSaleId(null), 4 * 60 * 1000)

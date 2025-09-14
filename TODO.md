@@ -1,8 +1,8 @@
-# Invoice Popup Implementation Plan
+# Cart Persistence Fix Plan
 
 ## Tasks
-- [x] Update app/sales/page.tsx to add modal state and dialog for invoice view
-- [x] Fetch invoice data when opening the modal
-- [x] Render InvoiceTemplate inside the modal dialog
-- [x] Ensure modal can be closed and add cursor-pointer to the view invoice button if needed
-- [ ] Test the popup functionality
+- [x] Add localStorage persistence for cart items in app/sales/page.tsx
+- [x] Load cart items from localStorage on component mount
+- [x] Save cart items to localStorage whenever cart changes
+- [x] Clear localStorage on successful checkout
+- [ ] Test cart persistence across page refreshes
