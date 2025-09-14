@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { mockSalesData } from "@/lib/mock-sales-data"
+import { sales } from "@/app/api/sales/route"
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   // In a real app, you would fetch from your sales database
-  // For demo, we'll use mock data or find by ID
-  const sale = mockSalesData.find((s) => s.id === params.id)
+  // For demo, we'll use the sales data
+  const sale = sales.find((s) => s.id === params.id)
 
   if (!sale) {
     return NextResponse.json({ error: "Invoice not found" }, { status: 404 })
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   // Add invoice-specific data
   const invoice = {
     ...sale,
-    invoiceNumber: `INV-${params.id.slice(-6).toUpperCase()}`,
+    invoiceNumber: `INV-${params.id.slice(-6).toUpperCase  ()}`,
     issueDate: sale.createdAt,
     dueDate: new Date(new Date(sale.createdAt).getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days later
     subtotal: sale.total / 1.08, // Remove tax to get subtotal

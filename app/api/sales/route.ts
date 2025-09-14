@@ -1,8 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import type { Sale } from "@/lib/types"
 
-// In-memory storage for demo purposes
-const sales: Sale[] = []
+export const sales: Sale[] = []
 
 export async function GET() {
   return NextResponse.json(sales.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()))
